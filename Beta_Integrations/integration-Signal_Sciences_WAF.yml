@@ -254,8 +254,7 @@ script:
                 res = http_request('DELETE', url)
 
         if 'res' not in locals():
-            res = {}
-            human_readable = '### Signal Sciences - Removing an IP from Whitelist \n\n The IP was not found in the Whitelist.'
+            raise Exception("The IP {0} was not found on the WhiteList".format(IP))
 
         else:
             human_readable = '### Signal Sciences - Removing an IP from Whitelist \n\n The IP has been successfully removed from Whitelist.'
@@ -284,11 +283,10 @@ script:
                 res = http_request('DELETE', url)
 
         if 'res' not in locals():
-            res = {}
-            human_readable = '### Signal Sciences - Removing an IP from Blacklist \n\n The IP was not found in the Blacklist.'
+            raise Exception("The IP {0} was not found on the BlackList".format(IP))
 
         else:
-          human_readable = '### Signal Sciences - Removing an IP from Blacklist \n\n The IP has been successfully removed from Blacklist.'
+            human_readable = '### Signal Sciences - Removing an IP from Blacklist \n\n The IP has been successfully removed from Blacklist.'
 
         return {
             'Type': entryTypes['note'],
